@@ -22,14 +22,14 @@ public class BooksAdapter extends ArrayAdapter<Books> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Books item=getItem(position);
+        final Books item=getItem(position);
         if(convertView==null)
-            convertView= LayoutInflater.from(getContext()).inflate(R.layout.activity_main, parent, false);
-        ImageView image=convertView.findViewById(R.id.image);
+            convertView= LayoutInflater.from(getContext()).inflate(R.layout.list_items, parent, false);
+        //ImageView image=convertView.findViewById(R.id.image);
         TextView title=convertView.findViewById(R.id.title);
         TextView author=convertView.findViewById(R.id.author);
 
-        image.setImageBitmap(item.getmImageResId());
+        //image.setImageBitmap(item.getmImageResId());
         title.setText(item.getmName());
         author.setText(item.getmAuthor());
 

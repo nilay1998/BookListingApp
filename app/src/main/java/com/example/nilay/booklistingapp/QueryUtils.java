@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class QueryUtils {
     private static final String LOG_TAG = "QueryUtils" ;
-    public static final String booksURL="https://www.googleapis.com/books/v1/volumes?maxResults=20&q=";
+    public static final String booksURL="https://www.googleapis.com/books/v1/volumes?maxResults=20&q=harry+potter";
 
     public static URL createUrl(String stringUrl)
     {
@@ -101,19 +101,19 @@ public class QueryUtils {
         ArrayList<Books> books = new ArrayList<>();
         try {
             JSONObject root= new JSONObject(booksJson);
-            JSONArray items=root.optJSONArray("items");
+            JSONArray items=root.getJSONArray("items");
 
             for(int i=0;i<items.length();i++)
             {
                 JSONObject object=items.getJSONObject(i);
                 JSONObject title=object.getJSONObject("volumeInfo");
-                JSONObject author=title.getJSONObject("authors");
-                String name=object.getString("title");
-                String writer=author.getString("0");
-                JSONObject image=title.getJSONObject("imageLinks");
-                String url=image.getString("smallThumbnail");
-                Bitmap id=getBitmapFromURL(url);
-                books.add(new Books(name,writer,id));
+                JSONArray author=title.getJSONArray("authors");
+                String name= title.getString("title");
+                String writer=author.getString(0);
+                //JSONObject image=title.getJSONObject("imageLinks");
+                //String url=image.getString("smallThumbnail");
+                //Bitmap id=getBitmapFromURL(url);
+                books.add(new Books(name,writer));
             }
         }
         catch (JSONException e) {
@@ -122,7 +122,7 @@ public class QueryUtils {
         return books;
     }
 
-    public static Bitmap getBitmapFromURL(String src) {
+    private static Bitmap getBitmapFromURL(String src) {
         try {
             Log.e("src",src);
             URL url = new URL(src);
