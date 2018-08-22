@@ -29,7 +29,7 @@ public class BooksAdapter extends ArrayAdapter<Books> {
         TextView title=convertView.findViewById(R.id.title);
         TextView author=convertView.findViewById(R.id.author);
 
-        image.setImageResource(item.getmImageResId());
+        image.setImageBitmap(item.getmImageResId());
         title.setText(item.getmName());
         author.setText(item.getmAuthor());
 

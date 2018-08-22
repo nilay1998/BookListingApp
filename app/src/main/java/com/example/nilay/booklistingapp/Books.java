@@ -1,18 +1,20 @@
 package com.example.nilay.booklistingapp;
 
+import android.graphics.Bitmap;
+
 public class Books {
     private String mName;
     private String mAuthor;
-    int mImageResId;
+    Bitmap mImageResId;
 
-    Books(String name,String author, int id)
+    Books(String name,String author, Bitmap id)
     {
         mName=name;
         mAuthor=author;
         mImageResId=id;
     }
 
-    public int getmImageResId() {
+    public Bitmap getmImageResId() {
         return mImageResId;
     }
 
