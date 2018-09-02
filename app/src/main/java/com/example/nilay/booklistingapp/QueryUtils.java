@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class QueryUtils {
     private static final String LOG_TAG = "QueryUtils" ;
-    public static final String booksURL="https://www.googleapis.com/books/v1/volumes?maxResults=20&q=harry+potter";
+    public static final String booksURL="https://www.googleapis.com/books/v1/volumes?maxResults=20&q=";
 
     public static URL createUrl(String stringUrl)
     {
