@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        checkConnection(cm);
         booksListView=findViewById(R.id.listview);
         circleProgressBar = findViewById(R.id.loading_spinner);
         editText=findViewById(R.id.album_description_view);
@@ -106,9 +105,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if (activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting()) {
             return true;
-
-            //Log.i("NETWORK", "INTERNET connection status: " + String.valueOf(isConnected) + ". It's time to play with LoaderManager :)");
-
         } else {
             return false;
 

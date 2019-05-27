@@ -19,6 +19,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class QueryUtils {
@@ -110,33 +112,23 @@ public class QueryUtils {
                 JSONArray author=title.getJSONArray("authors");
                 String name= title.getString("title");
                 String writer=author.getString(0);
-                //JSONObject image=title.getJSONObject("imageLinks");
-                //String url=image.getString("smallThumbnail");
-                //Bitmap id=getBitmapFromURL(url);
-                books.add(new Books(name,writer));
+                JSONObject image=title.getJSONObject("imageLinks");
+                StringBuilder stringBuilder = new StringBuilder();
+                String coverImageUrl=image.getString("smallThumbnail");
+//                Pattern p = Pattern.compile("id=(.*?)&");
+//                Matcher m = p.matcher(coverImageUrl);
+//                if (m.matches()) {
+//                    String id = m.group(1);
+//                    coverImageUrl = String.valueOf(stringBuilder.append("https://books.google.com/books/content/images/frontcover/").append(id).append("?fife=w300"));
+//                } else {
+//                    Log.i(LOG_TAG, "Issue with cover");
+//                }
+                books.add(new Books(name,writer,coverImageUrl));
             }
         }
         catch (JSONException e) {
             Log.e(LOG_TAG, "Problem parsing the earthquake JSON results", e);
         }
         return books;
-    }
-
-    private static Bitmap getBitmapFromURL(String src) {
-        try {
-            Log.e("src",src);
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            Log.e("Bitmap","returned");
-            return myBitmap;
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e("Exception",e.getMessage());
-            return null;
-        }
     }
 }

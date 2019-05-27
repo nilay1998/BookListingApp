@@ -5,18 +5,18 @@ import android.graphics.Bitmap;
 public class Books {
     private String mName;
     private String mAuthor;
-    //Bitmap mImageResId;
+    String mImageResId;
 
-    Books(String name,String author)
+    Books(String name,String author,String id)
     {
         mName=name;
         mAuthor=author;
-        //mImageResId=id;
+        mImageResId=id;
     }
 
-//    //public Bitmap getmImageResId() {
-//        return mImageResId;
-//    }
+    public String getmImageResId() {
+        return mImageResId;
+    }
 
     public String getmAuthor() {
         return mAuthor;

@@ -25,11 +25,10 @@ public class BooksAdapter extends ArrayAdapter<Books> {
         final Books item=getItem(position);
         if(convertView==null)
             convertView= LayoutInflater.from(getContext()).inflate(R.layout.list_items, parent, false);
-        //ImageView image=convertView.findViewById(R.id.image);
+        ImageView coverImageView=convertView.findViewById(R.id.image);
         TextView title=convertView.findViewById(R.id.title);
         TextView author=convertView.findViewById(R.id.author);
 
-        //image.setImageBitmap(item.getmImageResId());
         title.setText(item.getmName());
         author.setText(item.getmAuthor());
 
